@@ -25,6 +25,30 @@
             return $this->id;
         }
 
+        // Crud functions
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO tag (name) VALUES ('{$this->getName()}');");
+
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+        static function getAll()
+        {
+            $retrieved_tags = array();
+            $tags = $GLOBALS['DB']->query("SELECT * FROM tag;");
+            foreach( $tags as $tag )
+            {
+                $name = $tag['name'];
+                $id = $tag['id'];
+                $new_tag = new Tag($name, $id);
+                array_push($retrieved_tags, $new_tag);
+            }
+            return $retrieved_tags;
+        }
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM tag;");
+        }
 
 
 

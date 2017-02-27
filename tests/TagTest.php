@@ -16,11 +16,11 @@
     class CityTest extends PHPUnit_Framework_TestCase
     {
 
-        // protected function tearDown()
-        // {
-        // Tag::deleteAll();
+        protected function tearDown()
+        {
+        Tag::deleteAll();
         // Post::deleteAll();
-        // }
+        }
 
         function test_construct()
         {
@@ -36,6 +36,35 @@
             // Assert
             $this->assertEquals($input_name, $result1);
             $this->assertEquals($input_id, $result2);
+        }
+
+        function test_save()
+        {
+            // Arrange
+            $input_name = "PDX";
+            $test_tag = new Tag($input_name);
+            $test_tag->save();
+            $test_tag->getId();
+
+            // Act
+            $result = Tag::getAll();
+
+            // Assert
+            $this->assertEquals($test_tag, $result[0]);
+        }
+        function test_getAll()
+        {
+            // Arrange
+            $input_name = "PDX";
+            $test_tag = new Tag($input_name);
+            $test_tag->save();
+            $test_tag->getId();
+
+            // Act
+            $result = Tag::getAll();
+
+            // Assert
+            $this->assertEquals($test_tag, $result[0]);
         }
     }
 
