@@ -27,7 +27,7 @@
             // Arrange
             $input_name = "PDX";
             $input_id = 1;
-            $test_tag = new Tag("", null);
+            $test_tag = new Tag("", $input_id);
             $test_tag->setName($input_name);
 
             // Act
