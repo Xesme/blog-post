@@ -8,7 +8,7 @@
     require_once "src/Tag.php";
     // require_once "src/Post.php";
 
-    $server = 'mysql:host=localhost:8889;dbname=airline_planner';
+    $server = 'mysql:host=localhost:8889;dbname=test_blog';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -29,7 +29,7 @@
             $input_id = 1;
             $test_tag = new Tag("", null);
             $test_tag->setName($input_name);
-            
+
             // Act
             $result1 = $test_tag->getName();
             $result2 = $test_tag->getId();
