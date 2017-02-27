@@ -66,6 +66,21 @@
             // Assert
             $this->assertEquals($test_tag, $result[0]);
         }
+        function test_deleteAll()
+        {
+            // Arrange
+            $input_name = "PDX";
+            $test_tag = new Tag($input_name);
+            $test_tag->save();
+            $test_tag->getId();
+
+            // Act
+            Tag::deleteAll();
+            $result = Tag::getAll();
+
+            // Assert
+            $this->assertEquals(array(), $result);
+        }
     }
 
 ?>
