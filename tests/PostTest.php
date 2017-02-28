@@ -25,8 +25,20 @@
         function test_construct()
         {
             // Arrange
+            $title = "My so called life";
+            $content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+            $id = NULL;
+            $test_post = new Post($title, $content, $id);
+
             // Act
+            $result = $test_post->getTitle();
+            // $result2 = $test_post->getContent();
+            // $result3 = $test_post->getId();
+
             // Assert
+            $this->assertEquals($title, $result);
+            // $this->assertEquals($content, $result2);
+            // $this->assertEquals($id, $result3);
         }
     }
 

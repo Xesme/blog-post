@@ -13,7 +13,7 @@
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
-    class CityTest extends PHPUnit_Framework_TestCase
+    class TagTest extends PHPUnit_Framework_TestCase
     {
 
         protected function tearDown()
@@ -52,6 +52,7 @@
             // Assert
             $this->assertEquals($test_tag, $result[0]);
         }
+
         function test_getAll()
         {
             // Arrange
@@ -66,6 +67,7 @@
             // Assert
             $this->assertEquals($test_tag, $result[0]);
         }
+
         function test_deleteAll()
         {
             // Arrange
@@ -81,6 +83,44 @@
             // Assert
             $this->assertEquals(array(), $result);
         }
+
+        function test_update()
+        {
+            // Arrange
+            $input_name = "PDX";
+            $test_tag = new Tag($input_name);
+            $test_tag->save();
+            $input_name2 = "SFO";
+
+            // Act
+            $test_tag->update($input_name2);
+            $result = Tag::getAll();
+
+            // Assert
+            $this->assertEquals($input_name2, $result[0]->getName());
+
+        }
+
+        function test_delete()
+        {
+            // Arrange
+            $input_name = "PDX";
+            $id = NULL;
+            $test_tag = new Tag($input_name, $id);
+            $test_tag->save();
+
+            $input_name2 = "SFO";
+            $test_tag2 = new Tag($input_name2, $id);
+            $test_tag2->save();
+
+            // Act
+            $test_tag->delete();
+            $result = Tag::getAll();
+
+            // Assert
+            $this->assertEquals($test_tag2, $result[0]);
+        }
     }
+
 
 ?>
